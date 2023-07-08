@@ -33,24 +33,35 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $edit = Order::find($id);
+
+        return view('editOrder', compact('edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Order::find($id);
+        $data->name = $request->name;
+        $data->product_name = $request->product_name;
+        $data->items = $request->item;
+        $data->update();
+
+        return redirect()->route('order.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = Order::where('id', $id);
+        $data->delete();
+
+        return back();
     }
 }

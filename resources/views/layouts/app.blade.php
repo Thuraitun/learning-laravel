@@ -13,6 +13,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    {{-- icon --}}
+    <script src="https://kit.fontawesome.com/28670fc814.js" crossorigin="anonymous"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -93,6 +95,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{route('order.index')}}">Order</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{route('employee.index')}}">Employee</a>
                             </li>
                         </ul>
                     </div>

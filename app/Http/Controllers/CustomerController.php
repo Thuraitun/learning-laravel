@@ -32,27 +32,39 @@ class CustomerController extends Controller
         return redirect()->route('customer.index')->with(['create' => 'Customer Created!!']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function edit($id)
     {
-        //
+        $edit = Customer::find($id);
+        return view('editCustomer', compact('edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Customer::find($id);
+        $data->name = $request->name;
+        $data->gender = $request->gender;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+        $data->update();
+
+        return redirect()->route('customer.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = Customer::findOrFail($id);
+        $data->delete();
+
+        return back();
+
     }
 }

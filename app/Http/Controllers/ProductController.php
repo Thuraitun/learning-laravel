@@ -38,19 +38,33 @@ class ProductController extends Controller
         //
     }
 
+    public function edit($id)
+    {
+        $edit = Product::find($id);
+        return view('editeProduct', compact('edit'));
+    }
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Product::find($id);
+        $update->name = $request->name;
+        $update->description = $request->description;
+        $update->price = $request->price;
+        $update->update();
+
+        return redirect()->route('product.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = Product::where('id', $id);
+        $data->delete();
+
+        return back();
     }
 }
